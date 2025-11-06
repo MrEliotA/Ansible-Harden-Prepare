@@ -1,0 +1,6 @@
+# setup http proxy configuration
+proxy_env:
+  http_proxy: http://user:pass@host:port
+  https_proxy: "{{ http_proxy }}"
+
+  

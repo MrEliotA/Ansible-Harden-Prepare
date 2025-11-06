@@ -1,0 +1,42 @@
+---
+- name: install dependency
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+
+- name: give GPG key
+  get_url:
+    url: https://download.docker.com/linux/debian/gpg
+    dest: /usr/share/keyrings/docker-archive-keyring.gpg
+    mode: '0644'
+  environment: "{{ proxy_env }}"
+
+- name: Add Docker repo
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    state: present
+    filename: docker
+  environment: "{{ proxy_env }}"
+
+- name: install docker
+  apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  environment: "{{ proxy_env }}"
+
+- name: start and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
