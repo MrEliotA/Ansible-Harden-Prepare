@@ -14,7 +14,7 @@
 
 - name: Set hostname
   hostname:
-    name: '{{ inventory_hostname }}'
+    name: "{{ inventory_hostname }}"
 
 - name: Fix /etc/hosts
   template:

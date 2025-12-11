@@ -1,11 +1,11 @@
 ---
 - name: docker | Manual - create directories
   file:
-    dest=/etc/systemd/system/docker.service.d/
-    recurse=yes
-    state=directory
-    owner=root
-    group=root
+    dest: /etc/systemd/system/docker.service.d/
+    recurse: yes
+    state: directory
+    owner: root
+    group: root
 
 - name: Make docker configuration file.
   template:

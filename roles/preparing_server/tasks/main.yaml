@@ -7,9 +7,11 @@
   import_tasks: limits.yml
   tags: tuning
 
-- name: configure sshd, iptabels and ...
+- name: configure sshd, iptables and firewall
   import_tasks: hardening.yaml
-  tags: hardening, firewall
+  tags:
+    - hardening
+    - firewall
 
 - name: host file configure
   import_tasks: hosts.yml

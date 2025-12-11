@@ -56,7 +56,7 @@ fail2ban:
   findtime: 10m
   maxretry: 5
 
-# setion timeout setting (seconds)
+# session timeout setting (seconds)
 timeout_time: 600
 
 # auditd vars

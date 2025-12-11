@@ -12,4 +12,4 @@
     sysctl_file: /etc/sysctl.d/MeCan.conf
     reload: yes
     ignoreerrors: yes
-  with_dict: '{{ sysctl_config }}'
+  loop: "{{ lookup('dict', sysctl_config) }}"
